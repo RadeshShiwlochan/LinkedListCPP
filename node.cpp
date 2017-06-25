@@ -1,21 +1,5 @@
 #include <iostream>
-
-class Node {
-
-	private:
-		int data;
-		Node* next;
-		Node* previous;
-
-	public:
-		Node(int);
-		~Node();
-		Node(const Node* &); //copy constructor
-		int getData();
-		void setData(int);
-		void setNext(Node* &);
-		void setPrevious(Node* &);
-};
+#include "node.hpp"
 
 Node::Node(int nodeData) {
 	data     = nodeData;
@@ -35,6 +19,10 @@ Node::Node(const Node* &node2) {
 }
 
 int Node::getData() { return data; }
+
+Node* Node::getNext() { return next; }
+
+Node* Node::getPrevious() { return previous; }
 
 void Node::setData(int nodeData) { data = nodeData; }
 
