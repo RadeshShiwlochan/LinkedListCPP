@@ -68,6 +68,19 @@ void LinkedList::append(Node* node) {
 	size++;
 }
 
+Node* LinkedList::getElementAtIndx(int position) {
+	if(head->next == nullptr) {
+		exit(1);
+	}
+	Node* temp = head->next;
+	int counter = 0;
+	while(temp->next != nullptr && counter < position ) {
+		temp = temp->next;
+		counter++;
+	}
+	return temp; 
+}
+
 
 
 

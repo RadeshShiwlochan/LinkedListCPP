@@ -34,7 +34,7 @@ class LinkedList {
         void insert(int, Node*);
         void prepend(Node*);
         void append(Node*);
-        int getIndex(int);
+        Node* getElementAtIndx(int);
         Node* getNode(int);
         Node* front();
         Node* back();

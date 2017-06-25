@@ -10,6 +10,8 @@ int main(int argc, char* argv[]) {
 	linkedList.append(node1);
 	linkedList.append(node2);
 	linkedList.prepend(node3);
+	Node* nodeAtOne = linkedList.getElementAtIndx(1);
+	nodeAtOne->printNode();
 	linkedList.print();
 	// delete node1;
 	// delete node2;
