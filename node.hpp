@@ -4,15 +4,15 @@
 
 class Node {
 
-	private:
+	public:
 		int data;
 		Node* next;
 		Node* previous;
 
-	public:
 		Node(int);
 		~Node();
-		Node(const Node* &); //copy constructor
+		//Node(const Node* &); //copy constructor
+		void printNode();
 		int getData();
 		Node* getNext();
 		Node* getPrevious();

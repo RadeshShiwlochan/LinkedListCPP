@@ -12,10 +12,14 @@ Node::~Node() {
 	delete previous;
 }
 
-Node::Node(const Node* &node2) {
-	data     = node2->data;
-	next     = node2->next;
-	previous = node2->previous;
+// Node::Node(const Node* &node2) {
+// 	data     = node2->data;
+// 	next     = node2->next;
+// 	previous = node2->previous;
+// }
+
+void Node::printNode() {
+	std::cout << data << "\n";
 }
 
 int Node::getData() { return data; }

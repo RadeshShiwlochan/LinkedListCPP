@@ -4,7 +4,7 @@
 
 class LinkedList {
 
-    private:
+    public:
         Node* head;
         Node* tail;
         int size;
@@ -25,15 +25,9 @@ class LinkedList {
     popback() -- Remove the element at the end (if there is one).   
     */
 
-    public:
         LinkedList();
-   //   ~LinkedList()://destructor
-   //   LinkedList(const LinkedList& linkedList) {
-   //       for(int i = 0; i < size; ++i) {
-
-
-            // }
-   //   }
+        //~LinkedList(); //destructor
+        //LinkedList(const LinkedList& linkedList);
         int getSize();
         bool isEmpty();
         void print();
@@ -51,20 +45,3 @@ class LinkedList {
 
 };
 #endif
-
-
-
-// int getSize();
-// bool isEmpty();
-// void print();
-// void insert(int, Node*);
-// void prepend(Node*);
-// void append(Node*);
-// int getIndex(int);
-// Node* getNode(int);
-// Node* front();
-// Node* back();
-// int search(Node*);
-// void remove(int);
-// void popFront();
-// void popBack();
