@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
 	Node* node3 = new Node(3);
 	linkedList.append(node1);
 	linkedList.append(node2);
-	linkedList.append(node3);
+	linkedList.prepend(node3);
 	linkedList.print();
 	// delete node1;
 	// delete node2;

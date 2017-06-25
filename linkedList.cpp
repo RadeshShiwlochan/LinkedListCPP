@@ -13,9 +13,7 @@ LinkedList::LinkedList() {
 		tail's previous to head
 	*/
 	head->next = tail;
-	head->printNode();
-
-	//tail->previous = head;
+	tail->previous = head;
 }
 
 // LinkedList::~LinkedList() {
@@ -53,10 +51,21 @@ void LinkedList::print() {
 	}
 }
 
-void LinkedList::append(Node* node) {
+void LinkedList::insert(int atPosition, Node* node) {
 
+}
+
+void LinkedList::prepend(Node* node) {
+	node->next = head->next;
+	head->next = node;
+	node->previous = head;
+}
+
+void LinkedList::append(Node* node) {
 	tail->next = node;
+	node->previous = tail;
 	tail = node;
+	size++;
 }
 
 
