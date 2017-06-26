@@ -81,6 +81,33 @@ Node* LinkedList::getElementAtIndx(int position) {
 	return temp; 
 }
 
+Node* LinkedList::front() {
+	if(head->next == nullptr)
+		exit(-1);
+	Node* front = head->next;
+	return front;
+}
+
+Node* LinkedList::back() {
+	if(tail == head)
+		exit(1);
+	return tail;
+}
+
+int LinkedList::search(Node* searchElem) {
+
+	Node* temp = head->next;
+	int counter = 0, dataInSearchElem = searchElem->getData();
+	while(temp != nullptr) {
+		if(temp->getData() == dataInSearchElem) {
+			return counter;
+		}
+		counter++;
+		temp = temp->next;
+	}
+	return -9999;
+}
+
 
 
 

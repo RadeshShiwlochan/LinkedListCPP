@@ -10,7 +10,9 @@ int main(int argc, char* argv[]) {
 	linkedList.append(node1);
 	linkedList.append(node2);
 	linkedList.prepend(node3);
-	Node* nodeAtOne = linkedList.getElementAtIndx(1);
+	Node* nodeAtOne = linkedList.back();
+	
+	std::cout << linkedList.search(node2) << std::endl;
 	nodeAtOne->printNode();
 	linkedList.print();
 	// delete node1;
