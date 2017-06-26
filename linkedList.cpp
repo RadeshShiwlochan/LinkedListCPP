@@ -3,17 +3,10 @@
 #include "node.hpp"
 
 LinkedList::LinkedList() {
-	//create a node for head and tail of list
+	//create a node for head. set tail to head
 	head = new Node(0);
-	tail = new Node(0);
-	size = 0; //size is zero
-
-	/**
-		set the pointers: head's next to tail and
-		tail's previous to head
-	*/
-	head->next = tail;
-	tail->previous = head;
+	tail = head;
+	size = 0; 
 }
 
 // LinkedList::~LinkedList() {
@@ -59,6 +52,7 @@ void LinkedList::prepend(Node* node) {
 	node->next = head->next;
 	head->next = node;
 	node->previous = head;
+	size++;
 }
 
 void LinkedList::append(Node* node) {
@@ -69,9 +63,8 @@ void LinkedList::append(Node* node) {
 }
 
 Node* LinkedList::getElementAtIndx(int position) {
-	if(head->next == nullptr) {
+	if(head->next == nullptr) 
 		exit(1);
-	}
 	Node* temp = head->next;
 	int counter = 0;
 	while(temp->next != nullptr && counter < position ) {
@@ -99,13 +92,37 @@ int LinkedList::search(Node* searchElem) {
 	Node* temp = head->next;
 	int counter = 0, dataInSearchElem = searchElem->getData();
 	while(temp != nullptr) {
-		if(temp->getData() == dataInSearchElem) {
+		if(temp->getData() == dataInSearchElem) 
 			return counter;
-		}
 		counter++;
 		temp = temp->next;
 	}
 	return -9999;
+}
+
+void LinkedList::remove(int posOfElemToRemove) {
+	Node* temp = head->next;
+	int counter = 0;
+	if(posOfElemToRemove > size) {
+		std::cout << "position out of bounds!\n";
+		return;
+	}
+	while(temp != nullptr && counter < (posOfElemToRemove - 1)) {
+		temp = temp->next;
+		counter++;
+	}
+	//check if element to remove is at the end
+	std::cout << "counter: " << counter << std::endl;
+	Node* prevNode = temp->previous;
+	Node* nodeToDelete = temp;
+	if(temp->next->next == nullptr) {
+		temp->next = nullptr;
+		return;
+	}
+	//temp->next is not null, set prevNode to point to what temp is pointing to
+	Node* nodeAfterTemp = temp->next;
+	prevNode->next = nodeAfterTemp;
+	nodeAfterTemp->previous = prevNode;
 }
 
 

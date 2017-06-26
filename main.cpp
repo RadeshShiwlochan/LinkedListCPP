@@ -11,9 +11,7 @@ int main(int argc, char* argv[]) {
 	linkedList.append(node2);
 	linkedList.prepend(node3);
 	Node* nodeAtOne = linkedList.back();
-	
-	std::cout << linkedList.search(node2) << std::endl;
-	nodeAtOne->printNode();
+	linkedList.remove(1);
 	linkedList.print();
 	// delete node1;
 	// delete node2;
