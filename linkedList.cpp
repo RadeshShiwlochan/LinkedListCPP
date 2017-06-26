@@ -37,15 +37,28 @@ int LinkedList::getSize() { return size; }
 bool LinkedList::isEmpty() { return size == 0; }
 
 void LinkedList::print() { 
-	Node* temp = head;
+	Node* temp = head->next;
 	while(temp != nullptr) {
 		std::cout << temp->getData() << " ";
 		temp = temp->next;
 	}
 }
 
-void LinkedList::insert(int atPosition, Node* node) {
-
+void LinkedList::insert(int insertPosition, Node* node) {
+	if(insertPosition > size) {
+		std::cout << "position given is out of bounds!!\n";
+		return;
+	}
+	Node* temp = head->next;
+	int counter = 0;
+	while(temp != nullptr && counter < (insertPosition - 1)) {
+		counter++;
+		temp = temp->next;
+	}
+	node->next = temp->next;
+	temp->next = node;
+	node->previous = temp;
+	size++;
 }
 
 void LinkedList::prepend(Node* node) {
@@ -76,7 +89,7 @@ Node* LinkedList::getElementAtIndx(int position) {
 
 Node* LinkedList::front() {
 	if(head->next == nullptr)
-		exit(-1);
+		exit(1);
 	Node* front = head->next;
 	return front;
 }
@@ -88,7 +101,6 @@ Node* LinkedList::back() {
 }
 
 int LinkedList::search(Node* searchElem) {
-
 	Node* temp = head->next;
 	int counter = 0, dataInSearchElem = searchElem->getData();
 	while(temp != nullptr) {
@@ -101,6 +113,8 @@ int LinkedList::search(Node* searchElem) {
 }
 
 void LinkedList::remove(int posOfElemToRemove) {
+	//set tail here
+	//call delete
 	Node* temp = head->next;
 	int counter = 0;
 	if(posOfElemToRemove > size) {
@@ -112,7 +126,6 @@ void LinkedList::remove(int posOfElemToRemove) {
 		counter++;
 	}
 	//check if element to remove is at the end
-	std::cout << "counter: " << counter << std::endl;
 	Node* prevNode = temp->previous;
 	Node* nodeToDelete = temp;
 	if(temp->next->next == nullptr) {
@@ -125,34 +138,42 @@ void LinkedList::remove(int posOfElemToRemove) {
 	nodeAfterTemp->previous = prevNode;
 }
 
+Node* LinkedList::popFront() {
+	//check if list is empty
+	if(head->next == nullptr)
+		exit(1);
+	//get element in front of list
+	Node* front = head->next;
+	//checks if there is one element on the list
+	if(head->next->next == nullptr) {
+		tail = head;
+		size = 0;
+		return front;
+	}
+	//there are at least two elements in the list
+	Node* nodeAfterFront = head->next->next;
+	head->next = nodeAfterFront;
+	nodeAfterFront->previous = head;
+	size--;
+	return front;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Node* LinkedList::popBack() {
+	//check if list is empty
+    if(head->next == nullptr) 
+    	exit(1);
+    //get element at the back
+    Node* lastNode = tail;
+    //checks if there is one element on the list
+    if(head->next->next == nullptr) {
+    	tail = head;
+    	size = 0;
+    	return lastNode;
+    }
+    //at least two elements on the list
+    Node* nodeBeforeTail = tail->previous;
+    tail = nodeBeforeTail;
+    nodeBeforeTail->previous = nodeBeforeTail->previous;
+    size--;
+    return lastNode;
+}
